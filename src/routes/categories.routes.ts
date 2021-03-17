@@ -1,30 +1,31 @@
 import { Request, Response, Router } from 'express';
 
-import { CategoriesRepository } from '../repositories/CategoriesRepository';
+import { MemoryCategoriesRepository } from '../repositories/implementations/MemoryCategoriesRepository';
 import { CreateCategoryService } from '../services/CreateCategoryService';
 
 const categoriesRouter = Router();
 
-const categoriesRepository = new CategoriesRepository();
+const memoryCategoriesRepository = new MemoryCategoriesRepository();
 
-categoriesRouter.post('/', (request: Request, response: Response) => {
+categoriesRouter.post('/', async (request: Request, response: Response) => {
   const { name, description } = request.body;
 
   try {
     const createCategoryService = new CreateCategoryService(
-      categoriesRepository
+      memoryCategoriesRepository
     );
 
-    const category = createCategoryService.execute({ name, description });
+    const category = await createCategoryService.execute({ name, description });
 
     return response.status(201).json(category);
   } catch (error) {
+    console.log(error);
     return response.status(400).json({ error: error.message });
   }
 });
 
-categoriesRouter.get('/', (request: Request, response: Response) => {
-  const categories = categoriesRepository.findAll();
+categoriesRouter.get('/', async (request: Request, response: Response) => {
+  const categories = await memoryCategoriesRepository.findAll();
 
   return response.json(categories);
 });
