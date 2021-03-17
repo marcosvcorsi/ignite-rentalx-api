@@ -2,7 +2,7 @@ import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
 import { Category } from '../../models/Category';
 import { ICategoriesRepository } from '../protocols/ICategoriesRepository';
 
-export class MemoryCategoriesRepository implements ICategoriesRepository {
+export class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
 
   constructor() {

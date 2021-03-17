@@ -1,18 +1,18 @@
 import { Request, Response, Router } from 'express';
 
-import { MemoryCategoriesRepository } from '../modules/cars/repositories/implementations/MemoryCategoriesRepository';
+import { CategoriesRepository } from '../modules/cars/repositories/implementations/CategoriesRepository';
 import { CreateCategoryService } from '../modules/cars/services/CreateCategoryService';
 
 const categoriesRouter = Router();
 
-const memoryCategoriesRepository = new MemoryCategoriesRepository();
+const categoriesRepository = new CategoriesRepository();
 
 categoriesRouter.post('/', async (request: Request, response: Response) => {
   const { name, description } = request.body;
 
   try {
     const createCategoryService = new CreateCategoryService(
-      memoryCategoriesRepository
+      categoriesRepository
     );
 
     const category = await createCategoryService.execute({ name, description });
@@ -25,7 +25,7 @@ categoriesRouter.post('/', async (request: Request, response: Response) => {
 });
 
 categoriesRouter.get('/', async (request: Request, response: Response) => {
-  const categories = await memoryCategoriesRepository.findAll();
+  const categories = await categoriesRepository.findAll();
 
   return response.json(categories);
 });
