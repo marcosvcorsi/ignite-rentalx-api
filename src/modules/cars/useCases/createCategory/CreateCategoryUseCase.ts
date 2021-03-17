@@ -1,8 +1,10 @@
-import { CreateCategoryDto } from '../dtos/CreateCategoryDto';
-import { Category } from '../models/Category';
-import { ICategoriesRepository } from '../repositories/protocols/ICategoriesRepository';
+import { IUseCase } from '../../../../protocols';
+import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
+import { Category } from '../../models/Category';
+import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';
 
-export class CreateCategoryService {
+export class CreateCategoryUseCase
+  implements IUseCase<CreateCategoryDto, Category> {
   constructor(private readonly categoriesRepository: ICategoriesRepository) {}
 
   async execute({ name, description }: CreateCategoryDto): Promise<Category> {
