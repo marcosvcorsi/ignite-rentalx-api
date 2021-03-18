@@ -30,9 +30,12 @@ export class ImportCategoriesUseCase
         });
       });
 
-      parseFile.on('end', () => resolve(categories));
+      parseFile.on('end', () => {
+        fs.promises.unlink(file.path);
+        resolve(categories);
+      });
+
       parseFile.on('error', (error) => reject(error));
-      parseFile.on('end', () => fs.promises.unlink(file.path));
     });
   }
 
