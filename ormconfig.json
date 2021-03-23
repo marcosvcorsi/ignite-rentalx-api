@@ -3,5 +3,9 @@
   "host": "localhost",
   "username": "postgres",
   "password": "docker",
-  "database": "rentx"
+  "database": "rentx",
+  "migrations": ["./src/infra/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/infra/database/migrations"
+  }
 }
