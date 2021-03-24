@@ -1,19 +1,16 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
-import { IController, IUseCase } from '../../../../protocols';
+import { IController } from '../../../../protocols';
+import { ImportCategoriesUseCase } from './ImportCategoriesUseCase';
 
 export class ImportCategoriesController implements IController {
-  constructor(
-    private readonly importCategoriesUseCase: IUseCase<
-      Express.Multer.File,
-      void
-    >
-  ) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     const { file } = request;
 
-    await this.importCategoriesUseCase.execute(file);
+    const importCategoriesUseCase = container.resolve(ImportCategoriesUseCase);
+
+    await importCategoriesUseCase.execute(file);
 
     return response.status(204).send();
   }

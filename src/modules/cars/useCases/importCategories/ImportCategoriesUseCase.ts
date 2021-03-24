@@ -1,13 +1,18 @@
 import csvParse from 'csv-parse';
 import fs from 'fs';
+import { inject, injectable } from 'tsyringe';
 
 import { IUseCase } from '../../../../protocols';
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';
 
+@injectable()
 export class ImportCategoriesUseCase
   implements IUseCase<Express.Multer.File, void> {
-  constructor(private readonly categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject('CategoriesRepository')
+    private readonly categoriesRepository: ICategoriesRepository
+  ) {}
 
   private loadCategories(
     file: Express.Multer.File

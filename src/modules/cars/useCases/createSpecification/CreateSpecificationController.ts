@@ -1,22 +1,19 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
-import { IController, IUseCase } from '../../../../protocols';
-import { CreateSpecificationDto } from '../../dtos/CreateSpecificationDto';
-import { Specification } from '../../entities/Specification';
+import { IController } from '../../../../protocols';
+import { CreateSpecificationUseCase } from './CreateSpecificationUseCase';
 
 export class CreateSpecificationController implements IController {
-  constructor(
-    private readonly createSpecificationUseCase: IUseCase<
-      CreateSpecificationDto,
-      Specification
-    >
-  ) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
     try {
-      const specification = await this.createSpecificationUseCase.execute({
+      const createSpecificationUseCase = container.resolve(
+        CreateSpecificationUseCase
+      );
+
+      const specification = await createSpecificationUseCase.execute({
         name,
         description,
       });

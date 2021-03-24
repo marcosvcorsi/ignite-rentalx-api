@@ -1,11 +1,15 @@
+import { inject, injectable } from 'tsyringe';
+
 import { IUseCase } from '../../../../protocols';
 import { CreateSpecificationDto } from '../../dtos/CreateSpecificationDto';
 import { Specification } from '../../entities/Specification';
 import { ISpecificationsRepository } from '../../repositories/protocols/ISpecificationsRepository';
 
+@injectable()
 export class CreateSpecificationUseCase
   implements IUseCase<CreateSpecificationDto, Specification> {
   constructor(
+    @inject('SpecificationsRepository')
     private readonly specificationsRepository: ISpecificationsRepository
   ) {}
 

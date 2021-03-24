@@ -1,22 +1,17 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
-import { IController, IUseCase } from '../../../../protocols';
-import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
-import { Category } from '../../entities/Category';
+import { IController } from '../../../../protocols';
+import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
 export class CreateCategoryController implements IController {
-  constructor(
-    private readonly createCategoryUseCase: IUseCase<
-      CreateCategoryDto,
-      Category
-    >
-  ) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
     try {
-      const category = await this.createCategoryUseCase.execute({
+      const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
+
+      const category = await createCategoryUseCase.execute({
         name,
         description,
       });

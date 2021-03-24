@@ -1,11 +1,17 @@
+import { inject, injectable } from 'tsyringe';
+
 import { IUseCase } from '../../../../protocols';
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
 import { Category } from '../../entities/Category';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';
 
+@injectable()
 export class CreateCategoryUseCase
   implements IUseCase<CreateCategoryDto, Category> {
-  constructor(private readonly categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject('CategoriesRepository')
+    private readonly categoriesRepository: ICategoriesRepository
+  ) {}
 
   async execute({ name, description }: CreateCategoryDto): Promise<Category> {
     const categoryAlreadyExists = await this.categoriesRepository.findByName(
