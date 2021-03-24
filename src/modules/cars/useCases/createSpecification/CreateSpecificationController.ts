@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { IController, IUseCase } from '../../../../protocols';
 import { CreateSpecificationDto } from '../../dtos/CreateSpecificationDto';
-import { Specification } from '../../models/Specification';
+import { Specification } from '../../entities/Specification';
 
 export class CreateSpecificationController implements IController {
   constructor(

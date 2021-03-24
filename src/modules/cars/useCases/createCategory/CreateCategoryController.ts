@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { IController, IUseCase } from '../../../../protocols';
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
-import { Category } from '../../models/Category';
+import { Category } from '../../entities/Category';
 
 export class CreateCategoryController implements IController {
   constructor(

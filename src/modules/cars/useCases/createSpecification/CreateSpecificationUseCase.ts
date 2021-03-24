@@ -1,6 +1,6 @@
 import { IUseCase } from '../../../../protocols';
 import { CreateSpecificationDto } from '../../dtos/CreateSpecificationDto';
-import { Specification } from '../../models/Specification';
+import { Specification } from '../../entities/Specification';
 import { ISpecificationsRepository } from '../../repositories/protocols/ISpecificationsRepository';
 
 export class CreateSpecificationUseCase

@@ -1,6 +1,6 @@
 import { IUseCase } from '../../../../protocols';
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
-import { Category } from '../../models/Category';
+import { Category } from '../../entities/Category';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';
 
 export class CreateCategoryUseCase

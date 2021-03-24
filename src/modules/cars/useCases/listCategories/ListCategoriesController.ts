@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { IController, IUseCase } from '../../../../protocols';
-import { Category } from '../../models/Category';
+import { Category } from '../../entities/Category';
 
 export class ListCategoriesController implements IController {
   constructor(

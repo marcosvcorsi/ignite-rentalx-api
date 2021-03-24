@@ -1,5 +1,5 @@
 import { IUseCase } from '../../../../protocols';
-import { Category } from '../../models/Category';
+import { Category } from '../../entities/Category';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';
 
 export class ListCategoriesUseCase implements IUseCase<void, Category[]> {

@@ -5,6 +5,7 @@
   "password": "docker",
   "database": "rentx",
   "migrations": ["./src/infra/database/migrations/*.ts"],
+  "entities": ["./src/**/entities/*.ts"],
   "cli": {
     "migrationsDir": "./src/infra/database/migrations"
   }
