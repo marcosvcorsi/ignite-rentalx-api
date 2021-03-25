@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt';
 import { injectable, inject } from 'tsyringe';
 
 import { IUseCase } from '../../../../protocols';
@@ -13,7 +14,22 @@ export class CreateUserUseCase implements IUseCase<CreateUserDto, User> {
   ) {}
 
   async execute(data: CreateUserDto): Promise<User> {
-    const user = await this.usersRepository.create(data);
+    const { name, email, password, driver_license } = data;
+
+    const userAlreadyExists = await this.usersRepository.findByEmail(email);
+
+    if (userAlreadyExists) {
+      throw new Error('User already exists');
+    }
+
+    const hashPassword = await hash(password, 12);
+
+    const user = await this.usersRepository.create({
+      name,
+      email,
+      password: hashPassword,
+      driver_license,
+    });
 
     return user;
   }
