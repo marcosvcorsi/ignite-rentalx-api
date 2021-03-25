@@ -8,20 +8,15 @@ export class CreateUserController implements IController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, email, password, driver_license } = request.body;
 
-    try {
-      const createUserUseCase = container.resolve(CreateUserUseCase);
+    const createUserUseCase = container.resolve(CreateUserUseCase);
 
-      const users = await createUserUseCase.execute({
-        name,
-        email,
-        password,
-        driver_license,
-      });
+    const users = await createUserUseCase.execute({
+      name,
+      email,
+      password,
+      driver_license,
+    });
 
-      return response.status(201).json(users);
-    } catch (error) {
-      console.log(error);
-      return response.status(400).json({ error: error.message });
-    }
+    return response.status(201).json(users);
   }
 }

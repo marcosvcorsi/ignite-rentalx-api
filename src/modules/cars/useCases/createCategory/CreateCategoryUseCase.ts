@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import { CustomError } from '../../../../errors/CustomError';
 import { IUseCase } from '../../../../protocols';
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
 import { Category } from '../../entities/Category';
@@ -19,7 +20,7 @@ export class CreateCategoryUseCase
     );
 
     if (categoryAlreadyExists) {
-      throw new Error('Category already exists');
+      throw new CustomError('Category already exists');
     }
 
     const category = await this.categoriesRepository.create({

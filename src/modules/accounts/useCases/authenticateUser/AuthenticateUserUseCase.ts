@@ -2,6 +2,7 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
+import { CustomError } from '../../../../errors/CustomError';
 import { IUseCase } from '../../../../protocols';
 import { AuthenticateUserDto } from '../../dtos/AuthenticateUserDto';
 import { IUsersRepository } from '../../repositories/protocols/IUsersRepository';
@@ -26,7 +27,7 @@ export class AuthenticateUserUseCase
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user || !(await compare(password, user.password))) {
-      throw new Error('Email or password is incorrect');
+      throw new CustomError('Email or password is incorrect');
     }
 
     const { id, name } = user;

@@ -1,6 +1,7 @@
 import { hash } from 'bcrypt';
 import { injectable, inject } from 'tsyringe';
 
+import { CustomError } from '../../../../errors/CustomError';
 import { IUseCase } from '../../../../protocols';
 import { CreateUserDto } from '../../dtos/CreateUserDto';
 import { User } from '../../entities/User';
@@ -19,7 +20,7 @@ export class CreateUserUseCase implements IUseCase<CreateUserDto, User> {
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new Error('User already exists');
+      throw new CustomError('User already exists');
     }
 
     const hashPassword = await hash(password, 12);

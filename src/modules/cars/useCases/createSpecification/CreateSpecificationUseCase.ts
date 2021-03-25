@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import { CustomError } from '../../../../errors/CustomError';
 import { IUseCase } from '../../../../protocols';
 import { CreateSpecificationDto } from '../../dtos/CreateSpecificationDto';
 import { Specification } from '../../entities/Specification';
@@ -21,7 +22,7 @@ export class CreateSpecificationUseCase
     );
 
     if (specificationAlreadyExists) {
-      throw new Error('Specification already exists');
+      throw new CustomError('Specification already exists');
     }
 
     const specification = await this.specificationsRepository.create({
