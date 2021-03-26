@@ -31,6 +31,8 @@ export async function ensureAuthenticated(
       throw new CustomError('User does not exists', 401);
     }
 
+    request.user = user;
+
     return next();
   } catch (error) {
     throw new CustomError('Invalid token', 401);

@@ -34,4 +34,13 @@ export class UsersRepository implements IUsersRepository {
 
     return user;
   }
+
+  async update(id: string, data: Partial<User>): Promise<void> {
+    const user = await this.repository.findOne(id);
+
+    await this.repository.save({
+      ...user,
+      ...data,
+    });
+  }
 }
