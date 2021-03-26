@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import { IUseCase } from '../../../../protocols';
+import { deleteFile } from '../../../../utils/file';
 import { UpdateUserAvatarDto } from '../../dtos/UpdateUserAvatarDto';
 import { IUsersRepository } from '../../repositories/protocols/IUsersRepository';
 
@@ -13,6 +14,12 @@ export class UpdateUserAvatarUseCase
   ) {}
 
   async execute({ user_id, avatar_file }: UpdateUserAvatarDto): Promise<void> {
+    const user = await this.usersRepository.findById(user_id);
+
     await this.usersRepository.update(user_id, { avatar: avatar_file });
+
+    if (user.avatar) {
+      await deleteFile(`./public/avatar/${user.avatar}`);
+    }
   }
 }
