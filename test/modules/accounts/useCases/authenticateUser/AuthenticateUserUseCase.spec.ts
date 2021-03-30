@@ -1,7 +1,8 @@
-import { CustomError } from '../../../../../src/errors/CustomError';
-import { CreateUserDto } from '../../../../../src/modules/accounts/dtos/CreateUserDto';
-import { AuthenticateUserUseCase } from '../../../../../src/modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase';
-import { CreateUserUseCase } from '../../../../../src/modules/accounts/useCases/createUser/CreateUserUseCase';
+import { CustomError } from '@/errors/CustomError';
+import { CreateUserDto } from '@/modules/accounts/dtos/CreateUserDto';
+import { AuthenticateUserUseCase } from '@/modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase';
+import { CreateUserUseCase } from '@/modules/accounts/useCases/createUser/CreateUserUseCase';
+
 import { UsesRepositoryInMemory } from '../../../../in-memory/repositories/UsersRepositoryInMemory';
 
 describe('AuthenticateUserUseCase Tests', () => {

@@ -1,6 +1,7 @@
-import { CustomError } from '../../../../../src/errors/CustomError';
-import { CreateCategoryDto } from '../../../../../src/modules/cars/dtos/CreateCategoryDto';
-import { CreateCategoryUseCase } from '../../../../../src/modules/cars/useCases/createCategory/CreateCategoryUseCase';
+import { CustomError } from '@/errors/CustomError';
+import { CreateCategoryDto } from '@/modules/cars/dtos/CreateCategoryDto';
+import { CreateCategoryUseCase } from '@/modules/cars/useCases/createCategory/CreateCategoryUseCase';
+
 import { CategoriesRepositoryInMemory } from '../../../../in-memory/repositories/CategoryRepositoryInMemory';
 
 describe('CreateCategoryUseCase Tests', () => {
