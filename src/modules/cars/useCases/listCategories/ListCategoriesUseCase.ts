@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
-import { IUseCase } from '../../../../protocols';
+import { IUseCase } from '@/protocols';
+
 import { Category } from '../../entities/Category';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';
 

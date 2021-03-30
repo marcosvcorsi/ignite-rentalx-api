@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { CustomError } from '../errors/CustomError';
-import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository';
+import { CustomError } from '@/errors/CustomError';
+import { UsersRepository } from '@/modules/accounts/repositories/implementations/UsersRepository';
 
 type Payload = {
   sub: string;

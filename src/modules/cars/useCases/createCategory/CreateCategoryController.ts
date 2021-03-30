@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { IController } from '../../../../protocols';
+import { IController } from '@/protocols';
+
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
 export class CreateCategoryController implements IController {

@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
-import { CustomError } from '../../../../errors/CustomError';
-import { IUseCase } from '../../../../protocols';
+import { CustomError } from '@/errors/CustomError';
+import { IUseCase } from '@/protocols';
+
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
 import { Category } from '../../entities/Category';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';

@@ -1,8 +1,9 @@
 import { hash } from 'bcrypt';
 import { injectable, inject } from 'tsyringe';
 
-import { CustomError } from '../../../../errors/CustomError';
-import { IUseCase } from '../../../../protocols';
+import { CustomError } from '@/errors/CustomError';
+import { IUseCase } from '@/protocols';
+
 import { CreateUserDto } from '../../dtos/CreateUserDto';
 import { User } from '../../entities/User';
 import { IUsersRepository } from '../../repositories/protocols/IUsersRepository';

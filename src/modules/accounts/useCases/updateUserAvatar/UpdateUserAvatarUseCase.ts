@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
-import { IUseCase } from '../../../../protocols';
-import { deleteFile } from '../../../../utils/file';
+import { IUseCase } from '@/protocols';
+import { deleteFile } from '@/utils/file';
+
 import { UpdateUserAvatarDto } from '../../dtos/UpdateUserAvatarDto';
 import { IUsersRepository } from '../../repositories/protocols/IUsersRepository';
 
