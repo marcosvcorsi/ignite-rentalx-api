@@ -1,5 +1,5 @@
 import { CreateCategoryDto } from '../../../src/modules/cars/dtos/CreateCategoryDto';
-import { Category } from '../../../src/modules/cars/entities/Category';
+import { Category } from '../../../src/modules/cars/infra/typeorm/entities/Category';
 import { ICategoriesRepository } from '../../../src/modules/cars/repositories/protocols/ICategoriesRepository';
 
 export class CategoriesRepositoryInMemory implements ICategoriesRepository {

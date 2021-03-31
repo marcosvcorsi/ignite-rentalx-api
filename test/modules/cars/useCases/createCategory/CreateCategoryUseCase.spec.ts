@@ -1,6 +1,6 @@
-import { CustomError } from '@/errors/CustomError';
 import { CreateCategoryDto } from '@/modules/cars/dtos/CreateCategoryDto';
 import { CreateCategoryUseCase } from '@/modules/cars/useCases/createCategory/CreateCategoryUseCase';
+import { CustomError } from '@/shared/errors/CustomError';
 
 import { CategoriesRepositoryInMemory } from '../../../../in-memory/repositories/CategoryRepositoryInMemory';
 

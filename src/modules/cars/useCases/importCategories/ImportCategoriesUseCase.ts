@@ -2,7 +2,7 @@ import csvParse from 'csv-parse';
 import fs from 'fs';
 import { inject, injectable } from 'tsyringe';
 
-import { IUseCase } from '@/protocols';
+import { IUseCase } from '@/shared/protocols';
 
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';

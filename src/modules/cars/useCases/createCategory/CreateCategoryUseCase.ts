@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 
-import { CustomError } from '@/errors/CustomError';
-import { IUseCase } from '@/protocols';
+import { CustomError } from '@/shared/errors/CustomError';
+import { IUseCase } from '@/shared/protocols';
 
 import { CreateCategoryDto } from '../../dtos/CreateCategoryDto';
-import { Category } from '../../entities/Category';
+import { Category } from '../../infra/typeorm/entities/Category';
 import { ICategoriesRepository } from '../../repositories/protocols/ICategoriesRepository';
 
 @injectable()

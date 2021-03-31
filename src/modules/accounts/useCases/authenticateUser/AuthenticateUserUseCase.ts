@@ -2,8 +2,8 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import { CustomError } from '@/errors/CustomError';
-import { IUseCase } from '@/protocols';
+import { CustomError } from '@/shared/errors/CustomError';
+import { IUseCase } from '@/shared/protocols';
 
 import { AuthenticateUserDto } from '../../dtos/AuthenticateUserDto';
 import { IUsersRepository } from '../../repositories/protocols/IUsersRepository';

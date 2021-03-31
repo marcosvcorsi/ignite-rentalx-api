@@ -1,7 +1,7 @@
-import { CustomError } from '@/errors/CustomError';
 import { CreateUserDto } from '@/modules/accounts/dtos/CreateUserDto';
 import { AuthenticateUserUseCase } from '@/modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase';
 import { CreateUserUseCase } from '@/modules/accounts/useCases/createUser/CreateUserUseCase';
+import { CustomError } from '@/shared/errors/CustomError';
 
 import { UsesRepositoryInMemory } from '../../../../in-memory/repositories/UsersRepositoryInMemory';
 

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { CustomError } from '@/errors/CustomError';
+import { CustomError } from '@/shared/errors/CustomError';
 
 export async function errorHandler(
   error: Error,

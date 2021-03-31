@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { IController } from '@/protocols';
+import { IController } from '@/shared/protocols';
 
 import { CreateSpecificationUseCase } from './CreateSpecificationUseCase';
 

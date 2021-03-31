@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
-import { IUseCase } from '@/protocols';
+import { IUseCase } from '@/shared/protocols';
 import { deleteFile } from '@/utils/file';
 
 import { UpdateUserAvatarDto } from '../../dtos/UpdateUserAvatarDto';
