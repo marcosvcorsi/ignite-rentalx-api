@@ -1,4 +1,5 @@
 import { CreateCarDto } from '@/modules/cars/dtos/CreateCarDto';
+import { FilterCarsDto } from '@/modules/cars/dtos/ListCarsDto';
 import { Car } from '@/modules/cars/infra/typeorm/entities/Car';
 import { ICarsRepository } from '@/modules/cars/repositories/protocols/ICarsRepository';
 
@@ -23,5 +24,19 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     const car = this.cars.find((car) => car.license_plate === license_plate);
 
     return car;
+  }
+
+  async findAllAvailable({
+    name,
+    brand,
+    category_id,
+  }: FilterCarsDto): Promise<Car[]> {
+    const cars = this.cars
+      .filter((car) => !!car.available)
+      .filter((car) => !brand || car.brand.includes(brand))
+      .filter((car) => !name || car.name.includes(name))
+      .filter((car) => !category_id || car.category_id === category_id);
+
+    return cars;
   }
 }

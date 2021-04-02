@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { CreateCarController } from '@/modules/cars/useCases/createCar/CreateCarController';
+import { ListAvailableCarsController } from '@/modules/cars/useCases/listAvailableCars/ListAvailableCarsController';
 
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { ensureUserIsAdmin } from '../middlewares/ensureUserIsAdmin';
@@ -15,5 +16,9 @@ carsRouter.post(
   ensureUserIsAdmin,
   createCarController.handle
 );
+
+const listAvailableCarsController = new ListAvailableCarsController();
+
+carsRouter.get('/available', listAvailableCarsController.handle);
 
 export { carsRouter };

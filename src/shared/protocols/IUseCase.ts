@@ -1,3 +1,3 @@
-export interface IUseCase<Params, Response> {
+export interface IUseCase<Params = unknown, Response = unknown> {
   execute(data?: Params): Promise<Response>;
 }
