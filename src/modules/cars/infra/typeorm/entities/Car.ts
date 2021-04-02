@@ -1,5 +1,14 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
+
+import { Category } from './Category';
 
 @Entity('cars')
 export class Car {
@@ -26,6 +35,10 @@ export class Car {
 
   @Column()
   category_id: string;
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
 
   @Column()
   available: boolean;
