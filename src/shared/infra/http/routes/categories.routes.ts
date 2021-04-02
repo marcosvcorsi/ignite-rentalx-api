@@ -5,11 +5,17 @@ import { CreateCategoryController } from '@/modules/cars/useCases/createCategory
 import { ImportCategoriesController } from '@/modules/cars/useCases/importCategories/ImportCategoriesController';
 import { ListCategoriesController } from '@/modules/cars/useCases/listCategories/ListCategoriesController';
 
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { ensureUserIsAdmin } from '../middlewares/ensureUserIsAdmin';
+
 const upload = multer({
   dest: './tmp',
 });
 
 const categoriesRouter = Router();
+
+categoriesRouter.use(ensureAuthenticated);
+categoriesRouter.use(ensureUserIsAdmin);
 
 const createCategoryController = new CreateCategoryController();
 
