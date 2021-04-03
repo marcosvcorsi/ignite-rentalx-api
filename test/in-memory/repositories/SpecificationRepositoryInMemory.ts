@@ -1,42 +1,38 @@
-import { getRepository, Repository } from 'typeorm';
-
 import { CreateSpecificationDto } from '@/modules/cars/dtos/CreateSpecificationDto';
 import { Category } from '@/modules/cars/infra/typeorm/entities/Category';
 import { Specification } from '@/modules/cars/infra/typeorm/entities/Specification';
 import { ISpecificationsRepository } from '@/modules/cars/repositories/protocols/ISpecificationsRepository';
 
-export class SpecificationsRepository implements ISpecificationsRepository {
-  private repository: Repository<Specification>;
+export class SpecificationRepositoryInMemory
+  implements ISpecificationsRepository {
+  private specifications: Specification[];
 
   constructor() {
-    this.repository = getRepository(Specification);
+    this.specifications = [];
   }
 
   async create(data: CreateSpecificationDto): Promise<Specification> {
-    const { name, description } = data;
+    const specification = new Specification();
 
-    const specification = this.repository.create({
-      name,
-      description,
-    });
+    Object.assign(specification, data);
 
-    await this.repository.save(specification);
+    this.specifications.push(specification);
 
     return specification;
   }
 
   async findByName(name: string): Promise<Category> {
-    const specification = await this.repository.findOne({
-      where: {
-        name,
-      },
-    });
+    const specification = this.specifications.find(
+      (specification) => specification.name === name
+    );
 
     return specification;
   }
 
   async findByIds(ids: string[]): Promise<Specification[]> {
-    const specifications = await this.repository.findByIds(ids);
+    const specifications = this.specifications.filter((specification) =>
+      ids.includes(specification.id)
+    );
 
     return specifications;
   }
