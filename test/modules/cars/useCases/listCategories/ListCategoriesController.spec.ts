@@ -8,7 +8,7 @@ import { Category } from '@/modules/cars/infra/typeorm/entities/Category';
 import { app } from '@/shared/infra/http/app';
 import createConnection from '@/shared/infra/typeorm';
 
-describe('CreateCategoryController Tests', () => {
+describe('ListCategoriesController Tests', () => {
   let connection: Connection;
   let token: string;
 
@@ -44,22 +44,7 @@ describe('CreateCategoryController Tests', () => {
     await connection.close();
   });
 
-  it('should be able to create a new category', async () => {
-    const response = await request(app)
-      .post('/categories')
-      .set('Authorization', `Bearer ${token}`)
-      .send({
-        name: 'test',
-        description: 'test',
-      });
-
-    expect(response.status).toBe(201);
-    expect(response.body).toHaveProperty('id');
-    expect(response.body.name).toBe('test');
-    expect(response.body.description).toBe('test');
-  });
-
-  it('should not be able to create a new category if name already exists', async () => {
+  it('should be able to list all categories', async () => {
     const repository = getRepository(Category);
 
     const category = repository.create({
@@ -70,15 +55,12 @@ describe('CreateCategoryController Tests', () => {
     await repository.save(category);
 
     const response = await request(app)
-      .post('/categories')
-      .set('Authorization', `Bearer ${token}`)
-      .send({
-        name: category.name,
-        description: category.description,
-      });
+      .get('/categories')
+      .set('Authorization', `Bearer ${token}`);
 
-    expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty('message');
-    expect(response.body.message).toBe('Category already exists');
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveLength(1);
+    expect(response.body[0].name).toBe(category.name);
+    expect(response.body[0].description).toBe(category.description);
   });
 });
