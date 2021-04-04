@@ -35,6 +35,8 @@ export async function ensureAuthenticated(
 
     return next();
   } catch (error) {
+    console.error(error);
+
     throw new CustomError('Invalid token', 401);
   }
 }
