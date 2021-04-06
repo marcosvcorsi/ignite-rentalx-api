@@ -64,6 +64,8 @@ export class CreateRentalUseCase implements IUseCase<CreateRentalDto, Rental> {
       expected_return_date,
     });
 
+    await this.carsRepository.update(car_id, { available: false });
+
     return rental;
   }
 }
