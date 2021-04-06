@@ -34,4 +34,18 @@ export class RentalsRepositoryInMemory implements IRentalsRepository {
 
     return rental;
   }
+
+  async findById(id: string): Promise<Rental> {
+    const rental = this.rentals.find((rental) => rental.id === id);
+
+    return rental;
+  }
+  async update(id: string, data: Partial<Rental>): Promise<void> {
+    const findIndex = this.rentals.findIndex((rental) => rental.id === id);
+
+    this.rentals[findIndex] = {
+      ...this.rentals[findIndex],
+      ...data,
+    };
+  }
 }

@@ -14,4 +14,11 @@ export class DayjsDateProvider implements IDateProvider {
 
     return dayjs(normalizeEndDate).diff(normalizeStartDate, 'hours');
   }
+
+  diffInDays(end_date: Date, start_date: Date): number {
+    const normalizeEndDate = dayjs(end_date).utc().local().format();
+    const normalizeStartDate = dayjs(start_date).utc().local().format();
+
+    return dayjs(normalizeEndDate).diff(normalizeStartDate, 'days');
+  }
 }
