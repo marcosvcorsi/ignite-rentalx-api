@@ -41,7 +41,9 @@ describe('AuthenticateUserUseCase Tests', () => {
       password: 'anypassword',
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('Email or password is incorrect')
+    );
   });
 
   it('should not be able to authenticate a user when password is not correct', async () => {
@@ -59,6 +61,8 @@ describe('AuthenticateUserUseCase Tests', () => {
       password: 'invalid-password',
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('Email or password is incorrect')
+    );
   });
 });

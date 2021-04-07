@@ -57,7 +57,9 @@ describe('CreateRentalUseCase Tests', () => {
       expected_return_date: minimumExpectedDate,
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('Car not found', 404)
+    );
   });
 
   it('should not be able to create a new rental if there is another rental open to user', async () => {
@@ -93,7 +95,9 @@ describe('CreateRentalUseCase Tests', () => {
       expected_return_date: minimumExpectedDate,
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('There is a rental in progress for this user')
+    );
   });
 
   it('should not be able to create a new rental if there is another rental open to car', async () => {
@@ -119,7 +123,9 @@ describe('CreateRentalUseCase Tests', () => {
       expected_return_date: minimumExpectedDate,
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('Car is unavailable')
+    );
   });
 
   it('should not be able to create a new rental if expected return date is lower than minimum', async () => {
@@ -139,6 +145,8 @@ describe('CreateRentalUseCase Tests', () => {
       expected_return_date: new Date(),
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('Rental return date should be one day minimum')
+    );
   });
 });

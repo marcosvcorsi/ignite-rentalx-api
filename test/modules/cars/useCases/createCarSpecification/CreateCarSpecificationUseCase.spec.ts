@@ -51,6 +51,8 @@ describe('CreateCarSpecificationUseCase Tests', () => {
       specifications_ids: ['anyspecid'],
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('Car does not exists', 404)
+    );
   });
 });

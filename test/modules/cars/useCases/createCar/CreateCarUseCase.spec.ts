@@ -49,7 +49,9 @@ describe('CreateCarUseCase Tests', () => {
       license_plate: 'ANY',
     });
 
-    await expect(promise).rejects.toBeInstanceOf(CustomError);
+    await expect(promise).rejects.toEqual(
+      new CustomError('Car already exists')
+    );
   });
 
   it('should be able to create a car with available true by default', async () => {

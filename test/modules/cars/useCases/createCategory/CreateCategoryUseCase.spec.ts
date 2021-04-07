@@ -36,6 +36,8 @@ describe('CreateCategoryUseCase Tests', () => {
       description: 'anydescription',
     };
 
-    await expect(sut.execute(mockParams)).rejects.toBeInstanceOf(CustomError);
+    await expect(sut.execute(mockParams)).rejects.toEqual(
+      new CustomError('Category already exists')
+    );
   });
 });

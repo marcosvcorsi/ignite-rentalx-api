@@ -46,7 +46,7 @@ export class CreateRentalUseCase implements IUseCase<CreateRentalDto, Rental> {
     );
 
     if (userHasOpenRental) {
-      throw new CustomError('there is a rental in progress for this user');
+      throw new CustomError('There is a rental in progress for this user');
     }
 
     const expectedDateDiff = this.dateProvider.diffInHours(

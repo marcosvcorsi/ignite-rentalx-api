@@ -7,7 +7,7 @@
     "dev": "tsnd -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "typeorm:seeds": "tsnd src/shared/infra/typeorm/seeds",
-    "test": "jest --silent --noStackTrace --passWithNoTests --runInBand",
+    "test": "jest --silent --noStackTrace --passWithNoTests --runInBand --detectOpenHandles",
     "test:debug": "jest --passWithNoTests --runInBand",
     "test:staged": "yarn test --findRelatedTests"
   },
