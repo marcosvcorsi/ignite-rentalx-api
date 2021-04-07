@@ -7,6 +7,61 @@
     "contact": "marcosvcorsi@gmail.com"
   },
   "paths": {
+    "/sessions": {
+      "post": {
+        "tags": ["Session"],
+        "summary": "Authentication User",
+        "description": "authenticate a user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/categories": {
       "post": {
         "tags": ["Categories"],
@@ -76,6 +131,9 @@
         "tags": ["Categories"],
         "summary": "Import categories",
         "description": "Import categories from file (.csv)",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "application/form-data": {
@@ -144,6 +202,15 @@
         "description": {
           "type": "string"
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFromat": "JWT"
       }
     }
   }
