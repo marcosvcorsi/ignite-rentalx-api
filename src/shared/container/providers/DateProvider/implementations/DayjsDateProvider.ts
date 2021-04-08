@@ -21,4 +21,8 @@ export class DayjsDateProvider implements IDateProvider {
 
     return dayjs(normalizeEndDate).diff(normalizeStartDate, 'days');
   }
+
+  addDays(date: Date, days: number): Date {
+    return dayjs(date).add(days, 'days').toDate();
+  }
 }
