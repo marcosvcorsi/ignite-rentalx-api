@@ -6,17 +6,17 @@ import { DayjsDateProvider } from '@/shared/container/providers/DateProvider/imp
 import { IDateProvider } from '@/shared/container/providers/DateProvider/protocols/IDateProvider';
 import { CustomError } from '@/shared/errors/CustomError';
 
-import { UsesRepositoryInMemory } from '../../../../in-memory/repositories/UsersRepositoryInMemory';
+import { UsersRepositoryInMemory } from '../../../../in-memory/repositories/UsersRepositoryInMemory';
 
 describe('AuthenticateUserUseCase Tests', () => {
   let sut: AuthenticateUserUseCase;
-  let usersRepositoryInMemory: UsesRepositoryInMemory;
+  let usersRepositoryInMemory: UsersRepositoryInMemory;
   let usersTokensRepositoryInMemory: UsersTokensRepositoryInMemory;
   let dateProvider: IDateProvider;
   let createUserUseCase: CreateUserUseCase;
 
   beforeEach(async () => {
-    usersRepositoryInMemory = new UsesRepositoryInMemory();
+    usersRepositoryInMemory = new UsersRepositoryInMemory();
     usersTokensRepositoryInMemory = new UsersTokensRepositoryInMemory();
     dateProvider = new DayjsDateProvider();
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);

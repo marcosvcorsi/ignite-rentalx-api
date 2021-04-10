@@ -2,7 +2,7 @@ import { CreateUserDto } from '../../../src/modules/accounts/dtos/CreateUserDto'
 import { User } from '../../../src/modules/accounts/infra/typeorm/entities/User';
 import { IUsersRepository } from '../../../src/modules/accounts/repositories/protocols/IUsersRepository';
 
-export class UsesRepositoryInMemory implements IUsersRepository {
+export class UsersRepositoryInMemory implements IUsersRepository {
   private users: User[];
 
   constructor() {
