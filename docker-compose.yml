@@ -8,7 +8,7 @@ services:
       - 5432:5432
     environment:
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=rentx
+      - POSTGRES_DB=${DB_NAME}
     volumes:
       - pgdata:/data/postgres
     network_mode: host

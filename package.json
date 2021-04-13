@@ -7,12 +7,14 @@
     "dev": "tsnd -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "typeorm:seeds": "tsnd src/shared/infra/typeorm/seeds",
+    "up": "docker-compose --env-file ./.env up",
     "test": "jest --silent --noStackTrace --passWithNoTests --runInBand --detectOpenHandles",
     "test:debug": "jest --passWithNoTests --runInBand",
     "test:staged": "yarn test --findRelatedTests",
     "test:unit": "yarn test spec.ts --watch",
     "test:integration": "yarn test test.ts --watch",
     "test:cov": "yarn test --coverage",
+    "test:ci": "docker-compose --env-file ./.env.test up -d database && yarn test && docker-compose down",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -20,6 +22,7 @@
     "bcrypt": "^5.0.1",
     "csv-parse": "^4.15.3",
     "dayjs": "^1.10.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "handlebars": "^4.7.7",
