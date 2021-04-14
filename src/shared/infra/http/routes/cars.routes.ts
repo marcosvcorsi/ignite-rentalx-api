@@ -12,7 +12,7 @@ import { ensureUserIsAdmin } from '../middlewares/ensureUserIsAdmin';
 
 const carsRouter = Router();
 
-const upload = multer(uploadConfig.upload('./public/cars'));
+const upload = multer(uploadConfig);
 
 const createCarController = new CreateCarController();
 

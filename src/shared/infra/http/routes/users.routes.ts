@@ -12,7 +12,7 @@ const createUserController = new CreateUserController();
 
 usersRouter.post('/', createUserController.handle);
 
-const uploadAvatar = multer(uploadConfig.upload('./public/avatar'));
+const uploadAvatar = multer(uploadConfig);
 
 const updateUserAvatarController = new UpdateUserAvatarController();
 

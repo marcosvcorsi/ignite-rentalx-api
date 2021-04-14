@@ -11,6 +11,7 @@ services:
       - POSTGRES_DB=${DB_NAME}
     volumes:
       - pgdata:/data/postgres
+    network_mode: host
   api:
     build: .
     container_name: rentalx-api
@@ -21,6 +22,7 @@ services:
       - .:/usr/app
     depends_on:
       - database
+    network_mode: host
 volumes:
   pgdata:
     driver: local
