@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
+import { IStorageProvider } from '@/shared/container/providers/StorageProvider/protocols/IStorageProvider';
 import { IUseCase } from '@/shared/protocols';
 
 import { CarImage } from '../../infra/typeorm/entities/CarImage';
@@ -15,7 +16,9 @@ export class UploadCarsImagesUseCase
   implements IUseCase<CreateCarImagesDto, CarImage[]> {
   constructor(
     @inject('CarsImagesRepository')
-    private readonly carsImagesRepository: ICarsImagesRepository
+    private readonly carsImagesRepository: ICarsImagesRepository,
+    @inject('StorageProvider')
+    private readonly storageProvider: IStorageProvider
   ) {}
 
   async execute({
@@ -28,6 +31,8 @@ export class UploadCarsImagesUseCase
           car_id,
           filename,
         });
+
+        await this.storageProvider.save('cars', filename);
 
         return carImage;
       })

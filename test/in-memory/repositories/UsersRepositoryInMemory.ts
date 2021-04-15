@@ -39,6 +39,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     this.users[userIndex] = {
       ...user,
       ...data,
+      avatar_url: () => user.avatar,
     };
   }
 }
