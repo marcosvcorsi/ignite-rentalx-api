@@ -18,15 +18,15 @@ const storagesProviders = {
 
 container.registerSingleton<IStorageProvider>(
   'StorageProvider',
-  storagesProviders[process.env.STORAGE]
+  storagesProviders[process.env.STORAGE || 'local']
 );
 
 const mailProviders = {
-  ethereal: new EtherealMailProvider(),
-  ses: new SESMailProvider(),
+  ethereal: container.resolve(EtherealMailProvider),
+  ses: container.resolve(SESMailProvider),
 };
 
 container.registerInstance<IMailProvider>(
   'MailProvider',
-  mailProviders[process.env.MAIL_PROVIDER]
+  mailProviders[process.env.MAIL_PROVIDER || 'ethereal']
 );
