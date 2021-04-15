@@ -10,7 +10,7 @@ export class SESMailProvider implements IMailProvider {
 
   constructor() {
     this.client = new SESClient({
-      region: process.env.AWS_REGION,
+      region: process.env.AWS_REGION || 'us-east-1',
     });
   }
 
