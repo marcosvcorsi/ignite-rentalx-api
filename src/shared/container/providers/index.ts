@@ -22,8 +22,8 @@ container.registerSingleton<IStorageProvider>(
 );
 
 const mailProviders = {
-  ethereal: container.resolve(EtherealMailProvider),
-  ses: container.resolve(SESMailProvider),
+  ethereal: new EtherealMailProvider(),
+  ses: new SESMailProvider(),
 };
 
 container.registerInstance<IMailProvider>(
